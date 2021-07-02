@@ -38,3 +38,12 @@ jobs:
           tags: |
             viniquartz/rotten-potatoes:latest
             viniquartz/rotten-potatoes:${{ github.run_number }}
+  CD:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v1.1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.K8S_CONFIG }}
